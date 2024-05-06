@@ -1,0 +1,42 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Cédula</th>
+        <th>Fecha de Nacimiento</th>
+        <th>Email</th>
+        <th>Activo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cliente of clientes">
+        <td>{{ cliente.clienteId }}</td>
+        <td>{{ cliente.name }}</td>
+        <td>{{ cliente.lastName }}</td>
+        <td>{{ cliente.cedula }}</td>
+        <td>{{ cliente.birthDate }}</td>
+        <td>{{ cliente.email }}</td>
+        <td>
+          <ng-container
+            *ngIf="cliente.active; then botonParaActivo; else botonParaInactivo"
+          />
+
+          <ng-template #botonParaActivo>
+            <button [ngClass]="{ 'btn btn-danger': cliente.active }">
+              Inhabilitar
+            </button>
+          </ng-template>
+
+          <ng-template #botonParaInactivo>
+            <button [ngClass]="{ 'btn btn-success': !cliente.active }">
+              Habilitar
+            </button>
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
