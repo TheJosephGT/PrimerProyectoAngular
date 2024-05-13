@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { Direccion } from '../models/direccion';
+import { Direccion } from '../../../models/direccion';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-direccion-component',
-  standalone: true,
-  imports: [CommonModule],
+  standalone: false,
   templateUrl: './direccion-component.component.html',
   styleUrl: './direccion-component.component.css',
 })

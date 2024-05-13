@@ -1,6 +1,38 @@
-<h2>Primer proyecto en Angular - Joseph Garcia Torres</h2>
-<br />
-<router-outlet />
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-sm-6 mb-3 mb-sm-0">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Clientes</h5>
+          <p class="card-text">
+            Aqui se podran ver los clientes registrados en el sistema.
+          </p>
+          <a
+            class="btn btn-primary"
+            [routerLink]="['/clientes']"
+            routerLinkActive="router-link-active"
+            >Clientes</a
+          >
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Direcciones</h5>
+          <p class="card-text">
+            Aqui se podran ver las direcciones registradas en el sistema.
+          </p>
+          <a
+            class="btn btn-primary"
+            [routerLink]="['/direccion']"
+            routerLinkActive="router-link-active"
+            >Direcciones</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<app-clientes-component></app-clientes-component>
-<app-direccion-component></app-direccion-component>
+<router-outlet />
