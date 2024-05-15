@@ -1,0 +1,26 @@
+<div class="container mt-5">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Alias</th>
+        <th>Calle</th>
+        <th>Ciudad</th>
+        <th>Estado</th>
+        <th>Código Postal</th>
+        <th>País</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let direccion of direcciones">
+        <td>{{ direccion.addressId }}</td>
+        <td>{{ direccion.alias }}</td>
+        <td>{{ direccion.street }}</td>
+        <td>{{ direccion.city }}</td>
+        <td>{{ direccion.state }}</td>
+        <td>{{ direccion.zipCode }}</td>
+        <td>{{ direccion.country }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
