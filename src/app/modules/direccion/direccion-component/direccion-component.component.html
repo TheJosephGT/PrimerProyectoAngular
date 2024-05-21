@@ -11,6 +11,7 @@
         <th>Country</th>
         <th>CreateAt</th>
         <th>Active</th>
+        <th>Detalle</th>
       </tr>
     </thead>
     <tbody>
@@ -43,6 +44,14 @@
               Habilitar
             </button>
           </ng-template>
+        </td>
+        <td>
+          <a
+            class="btn btn-primary"
+            [routerLink]="['/direccion', direccion.addressId]"
+            routerLinkActive="router-link-active"
+            >Ver</a
+          >
         </td>
       </tr>
     </tbody>
