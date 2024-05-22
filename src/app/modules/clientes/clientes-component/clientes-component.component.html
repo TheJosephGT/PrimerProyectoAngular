@@ -41,7 +41,7 @@
         <td>
           <a
             class="btn btn-primary"
-            [routerLink]="['/cliente', cliente.clienteId]"
+            [routerLink]="['./cliente', cliente.clienteId]"
             routerLinkActive="router-link-active"
             >Ver</a
           >
@@ -49,7 +49,7 @@
         <td>
           <a
             class="btn btn-primary"
-            [routerLink]="['/direcciones', cliente.clienteId]"
+            [routerLink]="['./cliente-direccion', cliente.clienteId]"
             routerLinkActive="router-link-active"
             >Ver</a
           >

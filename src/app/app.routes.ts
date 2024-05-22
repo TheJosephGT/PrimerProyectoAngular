@@ -2,14 +2,14 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: '',
+    path: 'clientes',
     loadChildren: () =>
       import('./modules/clientes/clientes.module').then(
         (m) => m.ClientesModule
       ),
   },
   {
-    path: '',
+    path: 'direcciones',
     loadChildren: () =>
       import('./modules/direccion/direccion.module').then(
         (m) => m.DireccionModule

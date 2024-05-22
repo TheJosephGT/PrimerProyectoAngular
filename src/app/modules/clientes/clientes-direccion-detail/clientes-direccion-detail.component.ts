@@ -90,11 +90,9 @@ export class ClientesDireccionDetailComponent {
     this.routeManager.params.subscribe((params) => {
       const clienteId = params['id'];
       if (clienteId) {
-        this.direcciones = this.direcciones.filter(
+        this.direccionesFiltradas = this.direcciones.filter(
           (d) => d.clienteId == clienteId
         );
-
-        console.log(this.direcciones);
       }
     });
   }

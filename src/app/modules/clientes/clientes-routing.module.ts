@@ -6,7 +6,7 @@ import { ClientesDireccionDetailComponent } from './clientes-direccion-detail/cl
 
 const routes: Routes = [
   {
-    path: 'clientes',
+    path: '',
     component: ClientesComponentComponent,
   },
   {
@@ -14,7 +14,7 @@ const routes: Routes = [
     component: ClientesDetailComponent,
   },
   {
-    path: 'direcciones/:id',
+    path: 'cliente-direccion/:id',
     component: ClientesDireccionDetailComponent,
   },
 ];
