@@ -14,7 +14,7 @@
         <th>Detalle</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody *ngIf="listaDirecciones | async as direcciones">
       <tr *ngFor="let direccion of direcciones">
         <td>{{ direccion.addressId }}</td>
         <td>{{ direccion.alias }}</td>
@@ -34,13 +34,23 @@
           />
 
           <ng-template #botonParaActivo>
-            <button [ngClass]="{ 'btn btn-danger': direccion.active }">
+            <button
+              (click)="
+                cambiarEstadoActivo(direccion.addressId, !direccion.active)
+              "
+              [ngClass]="{ 'btn btn-danger': direccion.active }"
+            >
               Inhabilitar
             </button>
           </ng-template>
 
           <ng-template #botonParaInactivo>
-            <button [ngClass]="{ 'btn btn-success': !direccion.active }">
+            <button
+              (click)="
+                cambiarEstadoActivo(direccion.addressId, !direccion.active)
+              "
+              [ngClass]="{ 'btn btn-success': !direccion.active }"
+            >
               Habilitar
             </button>
           </ng-template>

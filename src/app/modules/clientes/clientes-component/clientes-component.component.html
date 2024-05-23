@@ -13,7 +13,8 @@
         <th>Direcciones</th>
       </tr>
     </thead>
-    <tbody>
+    <!-- Verificamos si la lista de clientes no esta nula, si no esta nula, entonces la volvermos asyncrona y le cambiamos el nombre a clientes -->
+    <tbody *ngIf="listaClientes | async as clientes">
       <tr *ngFor="let cliente of clientes">
         <td>{{ cliente.clienteId }}</td>
         <td>{{ cliente.name }}</td>
@@ -27,13 +28,19 @@
           />
 
           <ng-template #botonParaActivo>
-            <button [ngClass]="{ 'btn btn-danger': cliente.active }">
+            <button
+              (click)="cambiarEstadoActivo(cliente.clienteId, !cliente.active)"
+              [ngClass]="{ 'btn btn-danger': cliente.active }"
+            >
               Inhabilitar
             </button>
           </ng-template>
 
           <ng-template #botonParaInactivo>
-            <button [ngClass]="{ 'btn btn-success': !cliente.active }">
+            <button
+              (click)="cambiarEstadoActivo(cliente.clienteId, !cliente.active)"
+              [ngClass]="{ 'btn btn-success': !cliente.active }"
+            >
               Habilitar
             </button>
           </ng-template>

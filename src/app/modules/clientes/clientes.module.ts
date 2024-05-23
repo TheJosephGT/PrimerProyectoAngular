@@ -5,6 +5,8 @@ import { ClientesRoutingModule } from './clientes-routing.module';
 import { ClientesComponentComponent } from './clientes-component/clientes-component.component';
 import { ClientesDetailComponent } from './clientes-detail/clientes-detail.component';
 import { ClientesDireccionDetailComponent } from './clientes-direccion-detail/clientes-direccion-detail.component';
+import { ClientesService } from '../../servicios/clientes.service';
+import { DireccionService } from '../../servicios/direccion.service';
 
 @NgModule({
   declarations: [
@@ -13,5 +15,6 @@ import { ClientesDireccionDetailComponent } from './clientes-direccion-detail/cl
     ClientesDireccionDetailComponent,
   ],
   imports: [CommonModule, ClientesRoutingModule],
+  providers: [ClientesService, DireccionService],
 })
 export class ClientesModule {}
