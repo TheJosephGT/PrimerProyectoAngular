@@ -48,7 +48,7 @@
         <td>
           <a
             class="btn btn-primary"
-            [routerLink]="['./cliente', cliente.clienteId]"
+            [routerLink]="['/clientes/cliente', cliente.clienteId]"
             routerLinkActive="router-link-active"
             >Ver</a
           >
@@ -56,7 +56,7 @@
         <td>
           <a
             class="btn btn-primary"
-            [routerLink]="['./cliente-direccion', cliente.clienteId]"
+            [routerLink]="['/clientes/cliente-direccion', cliente.clienteId]"
             routerLinkActive="router-link-active"
             >Ver</a
           >
@@ -64,4 +64,23 @@
       </tr>
     </tbody>
   </table>
+
+  <div class="col-md-12 d-flex justify-content-center mt-5">
+    <div class="col-sm-6 mb-3 mb-sm-0">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Formulario</h5>
+          <p class="card-text">
+            Aqui se podran ver registrar los clientes y sus direcciones
+          </p>
+          <a
+            class="btn btn-primary"
+            [routerLink]="['/clientes/formulario-cliente']"
+            routerLinkActive="router-link-active"
+            >Formulario</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

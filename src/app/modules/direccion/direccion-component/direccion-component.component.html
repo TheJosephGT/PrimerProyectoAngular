@@ -58,7 +58,10 @@
         <td>
           <a
             class="btn btn-primary"
-            [routerLink]="['./direcciones-detalle', direccion.addressId]"
+            [routerLink]="[
+              '/direcciones/direcciones-detalle',
+              direccion.addressId
+            ]"
             routerLinkActive="router-link-active"
             >Ver</a
           >

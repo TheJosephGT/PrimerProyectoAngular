@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ClientesComponentComponent } from './clientes-component/clientes-component.component';
 import { ClientesDetailComponent } from './clientes-detail/clientes-detail.component';
 import { ClientesDireccionDetailComponent } from './clientes-direccion-detail/clientes-direccion-detail.component';
+import { ClienteFormComponent } from './cliente-form/cliente-form.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: 'cliente/:id',
     component: ClientesDetailComponent,
+  },
+  {
+    path: 'formulario-cliente',
+    component: ClienteFormComponent,
   },
   {
     path: 'cliente-direccion/:id',

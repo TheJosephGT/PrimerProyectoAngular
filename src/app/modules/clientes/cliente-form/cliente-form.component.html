@@ -1,0 +1,125 @@
+<div class="container">
+  <div class="row mt-5 d-flex justify-content-center">
+    <form class="col-md-8" [formGroup]="formulario" (ngSubmit)="guardar()">
+      <div class="card shadow">
+        <div class="card-header">
+          <h2 class="text-center">Formulario</h2>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="mb-3 col-md-6">
+              <label for="name" class="form-label">Nombre</label>
+              <input
+                formControlName="name"
+                type="text"
+                name="name"
+                class="form-control"
+                aria-describedby="helpId"
+              />
+              <small id="helpId" class="text-danger">{{
+                getError("name", "nombre")
+              }}</small>
+            </div>
+
+            <div class="mb-3 col-md-6">
+              <label for="lastName" class="form-label">Apellidos</label>
+              <input
+                formControlName="lastName"
+                type="text"
+                name="lastName"
+                class="form-control"
+                aria-describedby="helpId"
+              />
+              <small id="helpId" class="text-danger">{{
+                getError("lastName", "apellidos")
+              }}</small>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="mb-3 col-md-6">
+              <label for="cedula" class="form-label">Cédula</label>
+              <input
+                formControlName="cedula"
+                type="text"
+                name="cedula"
+                class="form-control"
+                aria-describedby="helpId"
+              />
+              <small id="helpId" class="text-danger">{{
+                getError("cedula", "cedula")
+              }}</small>
+            </div>
+
+            <div class="mb-3 col-md-6">
+              <label for="email" class="form-label">Correo Electronico</label>
+              <input
+                formControlName="email"
+                type="email"
+                name="email"
+                class="form-control"
+                aria-describedby="helpId"
+              />
+              <small id="helpId" class="text-danger">{{
+                getError("email", "correo electronico")
+              }}</small>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="mb-3 col-md-6">
+              <label for="birthDate" class="form-label"
+                >Fecha de cumpleaños</label
+              >
+              <input
+                formControlName="birthDate"
+                type="date"
+                name="birthDate"
+                class="form-control"
+                aria-describedby="helpId"
+              />
+              <small id="helpId" class="text-danger">{{
+                getError("birthDate", "Fecha de cumpleaños")
+              }}</small>
+            </div>
+
+            <div class="mb-3 col-md-6">
+              <label for="createAt" class="form-label">Fecha de creación</label>
+              <input
+                formControlName="createAt"
+                type="date"
+                name="createAt"
+                class="form-control"
+                aria-describedby="helpId"
+              />
+              <small id="helpId" class="text-danger">{{
+                getError("createAt", "Fecha de creación")
+              }}</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 d-flex justify-content-center">
+          <div>
+            <div class="form-check mb-3">
+              <input
+                type="checkbox"
+                name="terminos"
+                id="terminos"
+                class="form-check-input"
+              />
+              <label for="terminos" class="form-check-label mb-2"
+                >Activar cliente</label
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-center">
+          <button type="submit" class="col-6 btn btn-primary mb-4">
+            Enviar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
