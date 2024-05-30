@@ -21,15 +21,10 @@ export class ClientesDireccionDetailComponent {
   // Utilizamos pipe para poder utilizar el operador map y asi convertir en un array el observable.
   ngOnInit() {
     this.routeManager.params.subscribe((params) => {
-      const clienteId = params['id'];
+      const clienteId = +params['id'];
       if (clienteId) {
-        this.listaDirecciones = this._servicio
-          .getDirecciones()
-          .pipe(
-            map((direcciones: Direccion[]) =>
-              direcciones.filter((d) => d.clienteId == clienteId)
-            )
-          );
+        this.listaDirecciones =
+          this._servicio.getDireccionesByClienteId(clienteId);
       }
     });
   }

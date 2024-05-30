@@ -94,6 +94,13 @@ export class DireccionService {
     return of(direccion);
   }
 
+  getDireccionesByClienteId(clienteId: number): Observable<Direccion[]> {
+    const direccionesFiltradas = this.direcciones.filter(
+      (direccion) => direccion.clienteId === clienteId
+    );
+    return of(direccionesFiltradas);
+  }
+
   postDireccion() {}
 
   updateDireccionActiva(addressId: number, nuevoEstado: boolean) {
