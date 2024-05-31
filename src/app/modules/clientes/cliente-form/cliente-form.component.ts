@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Cliente } from '../../../models/cliente';
 import { Direccion } from '../../../models/direccion';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cliente-form',
@@ -13,6 +14,7 @@ import { Direccion } from '../../../models/direccion';
 export class ClienteFormComponent {
   formulario: FormGroup;
   direccionesSeleccionadas: Direccion[] = [];
+  toaster = inject(ToastrService);
 
   constructor(private form: FormBuilder) {
     this.formulario = this.form.group({
@@ -60,6 +62,9 @@ export class ClienteFormComponent {
     this.formulario.markAllAsTouched();
     console.info('Valor del formulario: ', this.formulario.value);
     console.info('Validez del formulario: ', this.formulario.valid);
+    if (this.formulario.valid) {
+      this.toaster.success('Cliente guardado con exito');
+    }
   }
 
   public getError(controlName: string, name: string) {
