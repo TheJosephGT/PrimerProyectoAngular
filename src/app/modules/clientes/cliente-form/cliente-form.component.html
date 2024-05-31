@@ -97,27 +97,147 @@
               }}</small>
             </div>
           </div>
-        </div>
-        <div class="col-12 d-flex justify-content-center">
+
+          <hr />
+
           <div>
-            <div class="form-check mb-3">
+            <h2 class="text-center">Direcciones</h2>
+          </div>
+
+          <div class="row">
+            <div class="mb-3 col-md-6">
+              <label for="alias" class="form-label">Alias</label>
               <input
-                type="checkbox"
-                name="terminos"
-                id="terminos"
-                class="form-check-input"
+                formControlName="alias"
+                type="text"
+                name="alias"
+                class="form-control"
+                aria-describedby="helpId"
               />
-              <label for="terminos" class="form-check-label mb-2"
-                >Activar cliente</label
-              >
+            </div>
+
+            <div class="mb-3 col-md-6">
+              <label for="street" class="form-label">Calle</label>
+              <input
+                formControlName="street"
+                type="text"
+                name="street"
+                class="form-control"
+                aria-describedby="helpId"
+              />
             </div>
           </div>
-        </div>
 
-        <div class="d-flex justify-content-center">
-          <button type="submit" class="col-6 btn btn-primary mb-4">
-            Enviar
-          </button>
+          <div class="row">
+            <div class="mb-3 col-md-6">
+              <label for="city" class="form-label">Ciudad</label>
+              <input
+                formControlName="city"
+                type="text"
+                name="city"
+                class="form-control"
+                aria-describedby="helpId"
+              />
+            </div>
+
+            <div class="mb-3 col-md-6">
+              <label for="state" class="form-label">Estado</label>
+              <input
+                formControlName="state"
+                type="text"
+                name="state"
+                class="form-control"
+                aria-describedby="helpId"
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="mb-3 col-md-6">
+              <label for="zipCode" class="form-label">Zipcode</label>
+              <input
+                formControlName="zipCode"
+                type="text"
+                name="zipCode"
+                class="form-control"
+                aria-describedby="helpId"
+              />
+            </div>
+
+            <div class="mb-3 col-md-6">
+              <label for="country" class="form-label">País</label>
+              <input
+                formControlName="country"
+                type="text"
+                name="country"
+                class="form-control"
+                aria-describedby="helpId"
+              />
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-sm-start">
+            <button
+              class="col-3 btn btn-primary mb-4"
+              (click)="guardarDireccion()"
+            >
+              Agregar
+            </button>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <div class="table-responsive">
+                <table class="table table-hover table-sm">
+                  <thead>
+                    <tr>
+                      <th>Alias</th>
+                      <th>Calle</th>
+                      <th>Ciudad</th>
+                      <th>Estado</th>
+                      <th>Zipcode</th>
+                      <th>País</th>
+                      <th>Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let direccion of direccionesSeleccionadas">
+                      <td>{{ direccion.alias }}</td>
+                      <td>{{ direccion.street }}</td>
+                      <td>{{ direccion.city }}</td>
+                      <td>{{ direccion.state }}</td>
+                      <td>{{ direccion.zipCode }}</td>
+                      <td>{{ direccion.country }}</td>
+                      <td>
+                        <button class="btn btn-danger">Eliminar</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 d-flex justify-content-center">
+            <div>
+              <div class="form-check mb-3">
+                <input
+                  formControlName="active"
+                  type="checkbox"
+                  name="active"
+                  class="form-check-input"
+                />
+                <label for="active" class="form-check-label mb-2"
+                  >Activar cliente</label
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-center">
+            <button type="submit" class="col-6 btn btn-primary mb-4">
+              Enviar
+            </button>
+          </div>
         </div>
       </div>
     </form>

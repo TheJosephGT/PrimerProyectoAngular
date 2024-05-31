@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Cliente } from '../../../models/cliente';
+import { Direccion } from '../../../models/direccion';
 
 @Component({
   selector: 'app-cliente-form',
@@ -11,6 +12,7 @@ import { Cliente } from '../../../models/cliente';
 })
 export class ClienteFormComponent {
   formulario: FormGroup;
+  direccionesSeleccionadas: Direccion[] = [];
 
   constructor(private form: FormBuilder) {
     this.formulario = this.form.group({
@@ -28,7 +30,30 @@ export class ClienteFormComponent {
       createAt: [new Date(), Validators.required],
       email: ['', [Validators.required, Validators.email]],
       active: [true, Validators.required],
+
+      // Direccion
+
+      alias: [''],
+      street: [''],
+      city: [''],
+      state: [''],
+      zipCode: [''],
+      country: [''],
     });
+  }
+
+  guardarDireccion() {
+    if (
+      this.formulario.value.alias !== '' &&
+      this.formulario.value.street !== '' &&
+      this.formulario.value.city !== '' &&
+      this.formulario.value.state !== '' &&
+      this.formulario.value.zipCode !== '' &&
+      this.formulario.value.country !== ''
+    ) {
+      const direccion: Direccion = this.formulario.value;
+      this.direccionesSeleccionadas.push(direccion);
+    }
   }
 
   guardar() {
@@ -49,6 +74,20 @@ export class ClienteFormComponent {
         return `El campo ${name} debe tener al menos 11 digitos`;
       } else if (this.formulario.get(controlName).hasError('maxlength')) {
         return `El campo ${name} puede tener hasta 11 digitos`;
+      }
+    }
+
+    return '';
+  }
+
+  public getErrorDireccion(controlName: string, name: string) {
+    if (
+      this.formulario.get(controlName) != null &&
+      this.formulario.get(controlName).touched &&
+      this.formulario.get(controlName).invalid
+    ) {
+      if (this.formulario.get(controlName).hasError('required')) {
+        return `El campo ${name} es obligatorio`;
       }
     }
 
