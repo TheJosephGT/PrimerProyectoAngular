@@ -79,18 +79,4 @@ export class ClienteFormComponent {
 
     return '';
   }
-
-  public getErrorDireccion(controlName: string, name: string) {
-    if (
-      this.formulario.get(controlName) != null &&
-      this.formulario.get(controlName).touched &&
-      this.formulario.get(controlName).invalid
-    ) {
-      if (this.formulario.get(controlName).hasError('required')) {
-        return `El campo ${name} es obligatorio`;
-      }
-    }
-
-    return '';
-  }
 }
