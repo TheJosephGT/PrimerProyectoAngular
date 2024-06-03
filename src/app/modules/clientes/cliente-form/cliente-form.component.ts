@@ -1,9 +1,13 @@
 import { Component, inject } from '@angular/core';
-import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { Cliente } from '../../../models/cliente';
-import { Direccion } from '../../../models/direccion';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-cliente-form',
@@ -13,7 +17,6 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ClienteFormComponent {
   formulario: FormGroup;
-  direccionesSeleccionadas: Direccion[] = [];
   toaster = inject(ToastrService);
 
   constructor(private form: FormBuilder) {
@@ -32,30 +35,7 @@ export class ClienteFormComponent {
       createAt: [new Date(), Validators.required],
       email: ['', [Validators.required, Validators.email]],
       active: [true, Validators.required],
-
-      // Direccion
-
-      alias: [''],
-      street: [''],
-      city: [''],
-      state: [''],
-      zipCode: [''],
-      country: [''],
     });
-  }
-
-  guardarDireccion() {
-    if (
-      this.formulario.value.alias !== '' &&
-      this.formulario.value.street !== '' &&
-      this.formulario.value.city !== '' &&
-      this.formulario.value.state !== '' &&
-      this.formulario.value.zipCode !== '' &&
-      this.formulario.value.country !== ''
-    ) {
-      const direccion: Direccion = this.formulario.value;
-      this.direccionesSeleccionadas.push(direccion);
-    }
   }
 
   guardar() {
