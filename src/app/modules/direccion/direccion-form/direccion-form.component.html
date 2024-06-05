@@ -1,0 +1,159 @@
+<div class="container">
+  <div class="row mt-5 d-flex justify-content-center">
+    <form class="col-md-8" [formGroup]="formulario" (ngSubmit)="guardar()">
+      <div class="card shadow mb-4">
+        <div class="card-header">
+          <h2 class="text-center">Formulario</h2>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="mb-3 col-md-6">
+              <label for="alias" class="form-label">Alias</label>
+              <input
+                formControlName="alias"
+                type="text"
+                name="alias"
+                class="form-control"
+                aria-describedby="helpId"
+                [ngClass]="{
+                  'is-invalid': getError('alias', 'alias') !== '',
+                  'is-valid':
+                    getError('alias', 'alias') === '' &&
+                    formulario.get('alias').touched
+                }"
+              />
+              <small id="helpId" class="text-danger">{{
+                getError("alias", "alias")
+              }}</small>
+            </div>
+
+            <div class="mb-3 col-md-6">
+              <label for="street" class="form-label">Calle</label>
+              <input
+                formControlName="street"
+                type="text"
+                name="street"
+                class="form-control"
+                aria-describedby="helpId"
+                [ngClass]="{
+                  'is-invalid': getError('street', 'Calle') !== '',
+                  'is-valid':
+                    getError('street', 'Calle') === '' &&
+                    formulario.get('street').touched
+                }"
+              />
+              <small id="helpId" class="text-danger">{{
+                getError("street", "Calle")
+              }}</small>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="mb-3 col-md-6">
+              <label for="city" class="form-label">Ciudad</label>
+              <input
+                formControlName="city"
+                type="text"
+                name="city"
+                class="form-control"
+                aria-describedby="helpId"
+                [ngClass]="{
+                  'is-invalid': getError('city', 'Ciudad') !== '',
+                  'is-valid':
+                    getError('city', 'Ciudad') === '' &&
+                    formulario.get('city').touched
+                }"
+              />
+              <small id="helpId" class="text-danger">{{
+                getError("city", "Ciudad")
+              }}</small>
+            </div>
+
+            <div class="mb-3 col-md-6">
+              <label for="state" class="form-label">Estado</label>
+              <input
+                formControlName="state"
+                type="text"
+                name="state"
+                class="form-control"
+                aria-describedby="helpId"
+                [ngClass]="{
+                  'is-invalid': getError('state', 'Estado') !== '',
+                  'is-valid':
+                    getError('state', 'Estado') === '' &&
+                    formulario.get('state').touched
+                }"
+              />
+              <small id="helpId" class="text-danger">{{
+                getError("state", "Estado")
+              }}</small>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="mb-3 col-md-6">
+              <label for="zipCode" class="form-label">ZipCode</label>
+              <input
+                formControlName="zipCode"
+                type="text"
+                name="zipCode"
+                class="form-control"
+                aria-describedby="helpId"
+                [ngClass]="{
+                  'is-invalid': getError('zipCode', 'ZipCode') !== '',
+                  'is-valid':
+                    getError('zipCode', 'ZipCode') === '' &&
+                    formulario.get('zipCode').touched
+                }"
+              />
+              <small id="helpId" class="text-danger">{{
+                getError("zipCode", "ZipCode")
+              }}</small>
+            </div>
+
+            <div class="mb-3 col-md-6">
+              <label for="country" class="form-label">País</label>
+              <input
+                formControlName="country"
+                type="text"
+                name="country"
+                class="form-control"
+                aria-describedby="helpId"
+                [ngClass]="{
+                  'is-invalid': getError('country', 'País') !== '',
+                  'is-valid':
+                    getError('country', 'País') === '' &&
+                    formulario.get('country').touched
+                }"
+              />
+              <small id="helpId" class="text-danger">{{
+                getError("country", "País")
+              }}</small>
+            </div>
+          </div>
+          <div class="col-12 d-flex justify-content-center">
+            <div>
+              <div class="form-check mb-3">
+                <input
+                  formControlName="active"
+                  type="checkbox"
+                  name="active"
+                  class="form-check-input"
+                />
+                <label for="active" class="form-check-label mb-2"
+                  >Activar cliente</label
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-center">
+            <button type="submit" class="col-6 btn btn-primary mb-4">
+              Enviar
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

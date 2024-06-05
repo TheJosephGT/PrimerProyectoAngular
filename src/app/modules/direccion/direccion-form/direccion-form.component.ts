@@ -3,31 +3,26 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-cliente-form',
+  selector: 'app-direccion-form',
   standalone: false,
-  templateUrl: './cliente-form.component.html',
-  styleUrl: './cliente-form.component.css',
+  templateUrl: './direccion-form.component.html',
+  styleUrl: './direccion-form.component.css',
 })
-export class ClienteFormComponent {
+export class DireccionFormComponent {
   formulario: FormGroup;
   toaster = inject(ToastrService);
 
   constructor(private form: FormBuilder) {
     this.formulario = this.form.group({
-      name: ['', Validators.required],
-      lastName: ['', Validators.required],
-      cedula: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(11),
-          Validators.maxLength(11),
-        ],
-      ],
-      birthDate: [new Date(), Validators.required],
-      createAt: [new Date(), Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      alias: ['', Validators.required],
+      street: ['', Validators.required],
+      city: ['', Validators.required],
+      state: ['', Validators.required],
+      zipCode: ['', Validators.required],
+      country: ['', Validators.required],
       active: [true, Validators.required],
+      createAt: [new Date(), Validators.required],
+      clienteId: [0, Validators.required],
     });
   }
 
@@ -36,7 +31,7 @@ export class ClienteFormComponent {
     console.info('Valor del formulario: ', this.formulario.value);
     console.info('Validez del formulario: ', this.formulario.valid);
     if (this.formulario.valid) {
-      this.toaster.success('Cliente guardado con exito');
+      this.toaster.success('Direccion guardado con exito');
     }
   }
 
@@ -48,10 +43,6 @@ export class ClienteFormComponent {
     ) {
       if (this.formulario.get(controlName).hasError('required')) {
         return `El campo ${name} es obligatorio`;
-      } else if (this.formulario.get(controlName).hasError('minlength')) {
-        return `El campo ${name} debe tener al menos 11 digitos`;
-      } else if (this.formulario.get(controlName).hasError('maxlength')) {
-        return `El campo ${name} puede tener hasta 11 digitos`;
       }
     }
 
