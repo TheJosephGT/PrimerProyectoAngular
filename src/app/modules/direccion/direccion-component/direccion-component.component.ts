@@ -11,12 +11,19 @@ import { DireccionService } from '../../../servicios/direccion.service';
   styleUrl: './direccion-component.component.css',
 })
 export class DireccionComponentComponent {
-  listaDirecciones: Observable<Direccion[]>;
+  listaDirecciones: Direccion[];
 
   constructor(private _servicio: DireccionService) {}
 
   ngOnInit() {
-    this.listaDirecciones = this._servicio.getDirecciones();
+    this._servicio.getDirecciones().subscribe({
+      next: (value) => {
+        this.listaDirecciones = value;
+      },
+      error: (error) => {
+        console.error(error);
+      },
+    });
   }
 
   cambiarEstadoActivo(addressId: number, nuevoEstado: boolean) {

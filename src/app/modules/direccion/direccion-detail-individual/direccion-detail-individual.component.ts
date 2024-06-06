@@ -11,7 +11,7 @@ import { DireccionService } from '../../../servicios/direccion.service';
   styleUrl: './direccion-detail-individual.component.css',
 })
 export class DireccionDetailIndividualComponent {
-  direccion: Observable<Direccion>;
+  direccion: Direccion;
 
   constructor(
     private routeManager: ActivatedRoute,
@@ -21,7 +21,14 @@ export class DireccionDetailIndividualComponent {
   ngOnInit() {
     this.routeManager.params.subscribe((params) => {
       if (params['id']) {
-        this.direccion = this._servicio.getDireccionById(+params['id']);
+        this._servicio.getDireccionById(+params['id']).subscribe({
+          next: (value) => {
+            this.direccion = value;
+          },
+          error: (error) => {
+            console.log('Error al obtener la direccion', error);
+          },
+        });
       }
     });
   }

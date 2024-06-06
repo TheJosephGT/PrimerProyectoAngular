@@ -9,13 +9,13 @@
         <th>State</th>
         <th>ZipCode</th>
         <th>Country</th>
-        <th>CreateAt</th>
         <th>Active</th>
+        <th>Editar</th>
         <th>Detalle</th>
       </tr>
     </thead>
-    <tbody *ngIf="listaDirecciones | async as direcciones">
-      <tr *ngFor="let direccion of direcciones">
+    <tbody *ngIf="listaDirecciones">
+      <tr *ngFor="let direccion of listaDirecciones">
         <td>{{ direccion.addressId }}</td>
         <td>{{ direccion.alias }}</td>
         <td>{{ direccion.street }}</td>
@@ -23,7 +23,6 @@
         <td>{{ direccion.state }}</td>
         <td>{{ direccion.zipCode }}</td>
         <td>{{ direccion.country }}</td>
-        <td>{{ direccion.createAt }}</td>
         <td>
           <ng-container
             *ngIf="
@@ -54,6 +53,17 @@
               Habilitar
             </button>
           </ng-template>
+        </td>
+        <td>
+          <a
+            class="btn btn-primary"
+            [routerLink]="[
+              '/direcciones/formulario-direccion',
+              direccion.addressId
+            ]"
+            routerLinkActive="router-link-active"
+            >Editar</a
+          >
         </td>
         <td>
           <a

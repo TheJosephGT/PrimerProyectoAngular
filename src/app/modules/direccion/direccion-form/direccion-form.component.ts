@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ClientesService } from '../../../servicios/clientes.service';
 import { Cliente } from '../../../models/cliente';
+import { DireccionService } from '../../../servicios/direccion.service';
+import { Direccion } from '../../../models/direccion';
+import { ActivatedRoute, RouterLink, Router } from '@angular/router';
 
 @Component({
   selector: 'app-direccion-form',
@@ -13,11 +16,15 @@ import { Cliente } from '../../../models/cliente';
 export class DireccionFormComponent {
   formulario: FormGroup;
   clientes: Cliente[];
+  direccion: Direccion;
   toaster = inject(ToastrService);
 
   constructor(
     private form: FormBuilder,
-    private _servicioCliente: ClientesService
+    private _servicioCliente: ClientesService,
+    private _servicioDireccion: DireccionService,
+    private routeManager: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -31,6 +38,19 @@ export class DireccionFormComponent {
       active: [true, Validators.required],
       createAt: [new Date(), Validators.required],
       clienteId: [0, Validators.required],
+    });
+
+    this.routeManager.params.subscribe((params) => {
+      if (params['id']) {
+        this._servicioDireccion.getDireccionById(+params['id']).subscribe({
+          next: (value) => {
+            this.formulario.patchValue(value);
+          },
+          error: (error) => {
+            console.log('Error al obtener la direccion', error);
+          },
+        });
+      }
     });
 
     this.getClientes();
@@ -53,6 +73,30 @@ export class DireccionFormComponent {
     console.info('Validez del formulario: ', this.formulario.valid);
     if (this.formulario.valid) {
       this.toaster.success('Direccion guardado con exito');
+
+      this.direccion = this.formulario.value;
+
+      if (this.direccion.addressId == 0) {
+        this._servicioDireccion.postDireccion(this.formulario.value).subscribe({
+          next: (value) => {
+            console.info('Direccion guardado con exito', value);
+          },
+          error: (error) => {
+            console.error('Error al guardar la direccion', error);
+          },
+        });
+      } else {
+        this._servicioDireccion.editDireccion(this.formulario.value).subscribe({
+          next: (value) => {
+            console.info('Direccion actualizado con exito', value);
+          },
+          error: (error) => {
+            console.error('Error al actualizar la direccion', error);
+          },
+        });
+      }
+
+      this.router.navigate(['/direcciones']);
     }
   }
 

@@ -11,8 +11,8 @@
         <th>País</th>
       </tr>
     </thead>
-    <tbody *ngIf="listaDirecciones | async as direcciones">
-      <tr *ngFor="let direccion of direcciones">
+    <tbody *ngIf="listaDirecciones">
+      <tr *ngFor="let direccion of listaDirecciones">
         <td>{{ direccion.addressId }}</td>
         <td>{{ direccion.alias }}</td>
         <td>{{ direccion.street }}</td>

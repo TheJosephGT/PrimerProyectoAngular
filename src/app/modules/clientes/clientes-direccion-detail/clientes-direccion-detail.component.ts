@@ -11,7 +11,7 @@ import { DireccionService } from '../../../servicios/direccion.service';
   styleUrl: './clientes-direccion-detail.component.css',
 })
 export class ClientesDireccionDetailComponent {
-  listaDirecciones: Observable<Direccion[]>;
+  listaDirecciones: Direccion[];
 
   constructor(
     private routeManager: ActivatedRoute,
@@ -23,8 +23,14 @@ export class ClientesDireccionDetailComponent {
     this.routeManager.params.subscribe((params) => {
       const clienteId = +params['id'];
       if (clienteId) {
-        this.listaDirecciones =
-          this._servicio.getDireccionesByClienteId(clienteId);
+        this._servicio.getDireccionesByClienteId(clienteId).subscribe({
+          next: (value) => {
+            this.listaDirecciones = value;
+          },
+          error: (error) => {
+            console.log('Error al obtener las direcciones del cliente', error);
+          },
+        });
       }
     });
   }

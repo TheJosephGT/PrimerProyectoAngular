@@ -1,116 +1,80 @@
 import { Injectable } from '@angular/core';
 import { Direccion } from '../models/direccion';
-import { Observable, of } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { error } from 'console';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DireccionService {
-  private direcciones: Direccion[] = [
-    {
-      addressId: 1,
-      alias: 'Home',
-      street: 'Toribio camilo',
-      city: 'San francisco de macoris',
-      state: 'Duarte',
-      zipCode: '31000',
-      country: 'Dominican Republic',
-      active: true,
-      createAt: new Date(),
-      clienteId: 1,
-    },
-    {
-      addressId: 10,
-      alias: 'Prueba',
-      street: 'Prueba nueva',
-      city: 'San francisco de macoris',
-      state: 'Duarte',
-      zipCode: '31000',
-      country: 'Dominican Republic',
-      active: true,
-      createAt: new Date(),
-      clienteId: 1,
-    },
-    {
-      addressId: 2,
-      alias: 'Vacation Home',
-      street: 'Calle Principal',
-      city: 'Puerto Plata',
-      state: 'Puerto Plata',
-      zipCode: '57000',
-      country: 'Dominican Republic',
-      active: false,
-      createAt: new Date(),
-      clienteId: 2,
-    },
-    {
-      addressId: 3,
-      alias: 'Warehouse',
-      street: 'Calle Central',
-      city: 'La Romana',
-      state: 'La Romana',
-      zipCode: '22000',
-      country: 'Dominican Republic',
-      active: true,
-      createAt: new Date(),
-      clienteId: 3,
-    },
-    {
-      addressId: 4,
-      alias: 'Beach House',
-      street: 'Calle del Mar',
-      city: 'Boca Chica',
-      state: 'Santo Domingo',
-      zipCode: '11500',
-      country: 'Dominican Republic',
-      active: true,
-      createAt: new Date(),
-      clienteId: 5,
-    },
-    {
-      addressId: 5,
-      alias: 'Mountain Retreat',
-      street: 'Carretera a la Montaña',
-      city: 'Jarabacoa',
-      state: 'La Vega',
-      zipCode: '41000',
-      country: 'Dominican Republic',
-      active: false,
-      createAt: new Date(),
-      clienteId: 4,
-    },
-  ];
+  private baseUrl = 'https://report-api.somee.com/api/addresses';
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   getDirecciones(): Observable<Direccion[]> {
-    return of(this.direcciones);
+    return this.http.get<Direccion[]>(this.baseUrl).pipe(
+      map((response) => response),
+      catchError((error) => {
+        console.error(error);
+        return of([]);
+      })
+    );
   }
 
   getDireccionById(addressId: number): Observable<Direccion | undefined> {
-    const direccion = this.direcciones.find(
-      (direccion) => direccion.addressId === addressId
+    return this.http.get<Direccion>(this.baseUrl + '/' + addressId).pipe(
+      map((response) => response),
+      catchError((error) => {
+        console.error(error);
+        return of();
+      })
     );
-    return of(direccion);
   }
 
   getDireccionesByClienteId(clienteId: number): Observable<Direccion[]> {
-    const direccionesFiltradas = this.direcciones.filter(
-      (direccion) => direccion.clienteId === clienteId
+    return this.getDirecciones().pipe(
+      map((direcciones) =>
+        direcciones.filter((direccion) => direccion.clienteId === clienteId)
+      ),
+      catchError((error) => {
+        console.error(error);
+        return of([]);
+      })
     );
-    return of(direccionesFiltradas);
   }
 
-  postDireccion() {}
+  editDireccion(
+    direccionEditada: Partial<Direccion>
+  ): Observable<Direccion | undefined> {
+    return this.http.post<Direccion>(this.baseUrl, direccionEditada).pipe(
+      map((response) => response),
+      catchError((error) => {
+        console.error(error);
+        return of();
+      })
+    );
+  }
+
+  postDireccion(
+    direccion: Partial<Direccion>
+  ): Observable<Direccion | undefined> {
+    return this.http.post<Direccion>(this.baseUrl, direccion).pipe(
+      map((response) => response),
+      catchError((error) => {
+        console.error(error);
+        return of();
+      })
+    );
+  }
 
   updateDireccionActiva(addressId: number, nuevoEstado: boolean) {
-    const direccion = this.direcciones.find(
-      (direccion) => direccion.addressId === addressId
-    );
-
-    if (direccion) {
-      direccion.active = nuevoEstado;
-      console.log('Cliente actualizado:', direccion);
-    }
+    // const direccion = this.direcciones.find(
+    //   (direccion) => direccion.addressId === addressId
+    // );
+    // if (direccion) {
+    //   direccion.active = nuevoEstado;
+    //   console.log('Cliente actualizado:', direccion);
+    // }
   }
 }
