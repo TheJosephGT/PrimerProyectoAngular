@@ -108,16 +108,18 @@
             </div>
 
             <div class="mb-3 col-md-6">
-              <label for="createAt" class="form-label">Fecha de creación</label>
+              <label for="createdAt" class="form-label"
+                >Fecha de creación</label
+              >
               <input
-                formControlName="createAt"
+                formControlName="createdAt"
                 type="date"
-                name="createAt"
+                name="createdAt"
                 class="form-control"
                 aria-describedby="helpId"
               />
               <small id="helpId" class="text-danger">{{
-                getError("createAt", "Fecha de creación")
+                getError("createdAt", "Fecha de creación")
               }}</small>
             </div>
           </div>

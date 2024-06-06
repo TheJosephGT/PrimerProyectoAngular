@@ -9,13 +9,13 @@
         <th>Fecha de Nacimiento</th>
         <th>Email</th>
         <th>Activo</th>
+        <th>Editar</th>
         <th>Detalle</th>
         <th>Direcciones</th>
       </tr>
     </thead>
-    <!-- Verificamos si la lista de clientes no esta nula, si no esta nula, entonces la volvermos asyncrona y le cambiamos el nombre a clientes -->
-    <tbody *ngIf="listaClientes | async as clientes">
-      <tr *ngFor="let cliente of clientes">
+    <tbody *ngIf="listaClientes">
+      <tr *ngFor="let cliente of listaClientes">
         <td>{{ cliente.clienteId }}</td>
         <td>{{ cliente.name }}</td>
         <td>{{ cliente.lastName }}</td>
@@ -44,6 +44,14 @@
               Habilitar
             </button>
           </ng-template>
+        </td>
+        <td>
+          <a
+            class="btn btn-info"
+            [routerLink]="['/clientes/formulario-cliente', cliente.clienteId]"
+            routerLinkActive="router-link-active"
+            >Editar</a
+          >
         </td>
         <td>
           <a

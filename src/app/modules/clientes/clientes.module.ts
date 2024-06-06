@@ -9,6 +9,7 @@ import { ClientesService } from '../../servicios/clientes.service';
 import { DireccionService } from '../../servicios/direccion.service';
 import { ClienteFormComponent } from './cliente-form/cliente-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     ClientesDireccionDetailComponent,
     ClienteFormComponent,
   ],
-  imports: [CommonModule, ClientesRoutingModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    ClientesRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
   providers: [ClientesService, DireccionService],
 })
 export class ClientesModule {}

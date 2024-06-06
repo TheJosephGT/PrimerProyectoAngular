@@ -6,7 +6,7 @@ export class Cliente {
   lastName: string;
   cedula: string;
   birthDate: Date;
-  createAt: Date;
+  createdAt: Date;
   email: string;
   active: boolean;
 
@@ -18,7 +18,7 @@ export class Cliente {
     this.lastName = '';
     this.cedula = '';
     this.birthDate = new Date();
-    this.createAt = new Date();
+    this.createdAt = new Date();
     this.email = '';
     this.active = true;
     this.addresses = [];

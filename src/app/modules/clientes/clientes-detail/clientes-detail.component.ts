@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
   styleUrl: './clientes-detail.component.css',
 })
 export class ClientesDetailComponent {
-  cliente: Observable<Cliente>;
+  cliente: Cliente;
 
   constructor(
     private routeManager: ActivatedRoute,
@@ -21,7 +21,14 @@ export class ClientesDetailComponent {
   ngOnInit() {
     this.routeManager.params.subscribe((params) => {
       if (params['id']) {
-        this.cliente = this._servicio.getClienteById(+params['id']);
+        this._servicio.getClienteById(+params['id']).subscribe({
+          next: (value) => {
+            this.cliente = value;
+          },
+          error: (error) => {
+            console.log('Error al obtener el cliente', error);
+          },
+        });
       }
     });
   }
