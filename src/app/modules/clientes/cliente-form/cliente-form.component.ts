@@ -12,7 +12,9 @@ export class ClienteFormComponent {
   formulario: FormGroup;
   toaster = inject(ToastrService);
 
-  constructor(private form: FormBuilder) {
+  constructor(private form: FormBuilder) {}
+
+  ngOnInit() {
     this.formulario = this.form.group({
       name: ['', Validators.required],
       lastName: ['', Validators.required],
