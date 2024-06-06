@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ClientesService } from '../../../servicios/clientes.service';
+import { Cliente } from '../../../models/cliente';
 
 @Component({
   selector: 'app-direccion-form',
@@ -11,9 +12,13 @@ import { ClientesService } from '../../../servicios/clientes.service';
 })
 export class DireccionFormComponent {
   formulario: FormGroup;
+  clientes: Cliente[];
   toaster = inject(ToastrService);
 
-  constructor(private form: FormBuilder) {}
+  constructor(
+    private form: FormBuilder,
+    private _servicioCliente: ClientesService
+  ) {}
 
   ngOnInit() {
     this.formulario = this.form.group({
@@ -26,6 +31,19 @@ export class DireccionFormComponent {
       active: [true, Validators.required],
       createAt: [new Date(), Validators.required],
       clienteId: [0, Validators.required],
+    });
+
+    this.getClientes();
+  }
+
+  getClientes() {
+    this._servicioCliente.getClientes().subscribe({
+      next: (value) => {
+        this.clientes = value;
+      },
+      error: (error) => {
+        console.error('Error al obtener los clientes: ', error);
+      },
     });
   }
 

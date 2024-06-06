@@ -6,6 +6,27 @@
           <h2 class="text-center">Formulario</h2>
         </div>
         <div class="card-body">
+          <div class="row d-flex justify-content-center">
+            <div class="mb-3 col-md-6">
+              <label for="clienteId" class="form-label">Cliente</label>
+              <select
+                class="form-select"
+                formControlName="clienteId"
+                name="clienteId"
+                aria-describedby="helpId"
+              >
+                <option
+                  *ngFor="let cliente of clientes"
+                  [value]="cliente.clienteId"
+                >
+                  {{ cliente.name }}
+                </option>
+              </select>
+              <small id="helpId" class="text-danger">{{
+                getError("name", "nombre")
+              }}</small>
+            </div>
+          </div>
           <div class="row">
             <div class="mb-3 col-md-6">
               <label for="alias" class="form-label">Alias</label>
